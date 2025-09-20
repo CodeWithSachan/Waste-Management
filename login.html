@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Daan-Setu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0fdf4, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .wrapper {
+      display: flex;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 900px;
+      width: 100%;
+      margin: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .image-side {
+      flex: 1;
+      background-image: url('img/donation.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 500px;
+      transform: translateX(-50px);
+      animation: slideInLeft 1s ease forwards;
+    }
+
+    @keyframes slideInLeft {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .container {
+      flex: 1;
+      padding: 50px 40px;
+      position: relative;
+      animation: slideInRight 1s ease forwards;
+      transform: translateX(50px);
+    }
+
+    @keyframes slideInRight {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeDown 1.2s ease;
+    }
+
+    .logo img {
+      width: 100px;
+      height: auto;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 6px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #4CAF50;
+      box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+      outline: none;
+    }
+
+    button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      transition: background-color 0.3s ease;
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 300%;
+      height: 300%;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
+
+    button:hover {
+      background-color: #3e9142;
+    }
+
+    button:active::before {
+      transform: translateX(-50%) scale(1);
+    }
+
+    .extra-links {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .extra-links a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
+      color: #3e9142;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: 500;
+      animation: fadeInError 0.4s ease-in-out;
+    }
+
+    @keyframes fadeInError {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .image-side {
+        display: none;
+      }
+
+      .container {
+        padding: 40px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="image-side"></div>
+
+    <div class="container">
+      <div class="logo">
+        <img src="img/Daan-setu-img.png" alt="Daan-Setu Logo">
+      </div>
+
+      <h2>Welcome Back</h2>
+      <form onsubmit="handleLogin(event)">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+
+        <div class="extra-links">
+          <p><a href="forgot_password.html">Forgot Password?</a></p>
+          <p>Don't have an account? <a href="create_account.html">Create one</a></p>
+        </div>
+        <p id="errorMessage" class="error"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('errorMessage');
+
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+
+      if (!storedUser) {
+        errorMessage.textContent = "No account found. Please create one.";
+        return;
+      }
+
+      if (username === storedUser.username && password === storedUser.password) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('loggedInUser', username);
+        window.location.href = 'index.html';
+      } else {
+        errorMessage.textContent = "Invalid username or password.";
+      }
+    }
+  </script>
+</body>
+</html>

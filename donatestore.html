@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DaanSetu - Donation Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://sheetdb.io/s/f/jb5koeqcev1hu.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+      const scriptURL = "https://sheetdb.io/api/v1/ptwl304k148gq";
+      const form = document.forms["donation-form"];
+      const successMessage = document.getElementById("success-message");
+      const submitButton = document.getElementById("submit-button");
+  
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+  
+        const formData = {
+          "Full Name": form["full-name"].value,
+          "Mobile Number": form["mobile"].value,
+          "Email Address": form["email"].value,
+          "Address": form["address"].value,
+          "What Are You Donating?": form["donation"].value,
+          "Preferred Pickup Date & Time": form["pickup"].value,
+          "Item Photo (Link)": form["photo"].value,
+          "Additional Notes": form["notes"].value,
+        };
+  
+        submitButton.disabled = true;
+  
+        fetch(scriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: formData }),
+        })
+          .then((response) => {
+            // Save data to localStorage
+            localStorage.setItem("donationdata", JSON.stringify(formData));
+  
+            // Optional: show success and scroll
+            successMessage.classList.remove("hidden");
+            form.reset();
+            successMessage.scrollIntoView({ behavior: "smooth" });
+  
+            // Redirect after a short delay
+            setTimeout(() => {
+              window.location.href = "store.html";
+            }, 1000);
+          })
+          .catch((error) => {
+            alert("Oops! Something went wrong.");
+            console.error("Error:", error);
+          })
+          .finally(() => {
+            submitButton.disabled = false;
+          });
+      });
+    });
+  </script>
+
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-5xl mx-auto p-8 bg-white shadow-lg rounded-xl mt-10">
+    <div class="text-center mb-6">
+      <img src="img/Daan-Setu.png" alt="DaanSetu Logo" class="mx-auto w-28" />
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center justify-center">
+      <!-- Left Section: Images -->
+      <div class="lg:w-1/2 w-full p-4 space-y-4">
+        <img src="img/donation1.jpg" alt="Donation Image 1" class="w-full rounded-lg shadow-lg" />
+        <img src="img/education.jpg" alt="Donation Image 2" class="w-full rounded-lg shadow-lg" />
+        <img src="img/water.jpg" alt="Donation Image 3" class="w-full rounded-lg shadow-lg" />
+      </div>
+
+      <!-- Right Section: Form -->
+      <div class="lg:w-1/2 w-full p-6">
+        <h1 class="text-3xl font-bold text-center mb-6 text-green-600">DaanSetu - Donation Form</h1>
+
+        <form id="donationForm" class="space-y-6">
+          <input type="text" name="full-name" placeholder="Full Name" required class="w-full p-2 border border-gray-300 rounded-lg" />
+          <input type="tel" name="mobile" placeholder="Mobile Number" required class="w-full p-2 border border-gray-300 rounded-lg" />
+          <input type="email" name="email" placeholder="Email Address" required class="w-full p-2 border border-gray-300 rounded-lg" />
+          <textarea name="address" rows="2" placeholder="Address" required class="w-full p-2 border border-gray-300 rounded-lg"></textarea>
+          <input type="text" name="donation" placeholder="What Are You Donating?" required class="w-full p-2 border border-gray-300 rounded-lg" />
+          <input type="datetime-local" name="pickup" required class="w-full p-2 border border-gray-300 rounded-lg" />
+          
+          <input type="url" name="photo-url" placeholder="Item Photo (Link)" class="w-full p-2 border border-gray-300 rounded-lg" />
+          <input type="file" name="photo-upload" accept="image/*" class="w-full p-2 border border-gray-300 rounded-lg" />
+          
+          <textarea name="notes" rows="3" placeholder="Additional Notes" class="w-full p-2 border border-gray-300 rounded-lg"></textarea>
+
+          <div class="text-center">
+            <button type="submit" class="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-300">Submit Donation</button>
+          </div>
+        </form>
+
+        <div id="success-message" class="hidden text-center mt-4 text-green-600 font-semibold">
+          Thank you for your donation! We'll reach out soon.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("donationForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+  
+      const form = e.target;
+      const imageFile = form["photo-upload"].files[0];
+      const imageURLFromInput = form["photo-url"].value;
+  
+      // Helper to store data
+      function saveDonation(finalImage) {
+        if (!finalImage) {
+          alert("Please provide a photo link or upload an image.");
+          return;
+        }
+  
+        const formData = {
+          name: form["full-name"].value,
+          mobile: form["mobile"].value,
+          email: form["email"].value,
+          address: form["address"].value,
+          donation: form["donation"].value,
+          pickup: form["pickup"].value,
+          notes: form["notes"].value,
+          image: finalImage
+        };
+  
+        let donations = JSON.parse(localStorage.getItem("donations")) || [];
+        donations.push(formData);
+        localStorage.setItem("donations", JSON.stringify(donations));
+  
+        form.reset();
+        document.getElementById("success-message").classList.remove("hidden");
+      }
+  
+      // If file is uploaded, read it as base64
+      if (imageFile) {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          saveDonation(reader.result); // base64 image
+        };
+        reader.readAsDataURL(imageFile);
+      } else {
+        saveDonation(imageURLFromInput); // use direct URL
+      }
+    });
+  </script>
+  
+</body>
+</html>

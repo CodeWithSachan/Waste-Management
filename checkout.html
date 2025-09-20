@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donate - Checkout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .payment-box {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 30px 40px;
+      width: 400px;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .payment-box h2 {
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 22px;
+    }
+
+    .payment-box p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .qr-code {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      margin: 0 auto 15px;
+      display: block;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 5px;
+    }
+
+    .icons {
+      margin: 10px 0;
+    }
+
+    .icons img {
+      width: 35px;
+      margin: 0 5px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #0f62fe;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0043ce;
+    }
+
+    .contact {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: #999;
+      margin-top: 25px;
+    }
+
+    @media screen and (max-width: 480px) {
+      .payment-box {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="payment-box">
+    <img src="img/razorpay.png" alt="Razorpay Logo" class="logo">
+
+    <h2>Complete Your Donation</h2>
+    <p>Scan the QR code below to donate securely</p>
+
+    <img src="img/googleqr.jpeg" alt="QR Code" class="qr-code">
+
+    <div class="icons">
+      <img src="img/google-pay-icon.png" alt="Google Pay">
+      <img src="img/phonepe-icon.png" alt="PhonePe">
+      <img src="img/paytm-icon.png" alt="Paytm">
+    </div>
+
+    <div class="contact">
+        Send screenshot to: <br><strong><a href="mailto:giveforgood.india@gmail.com" style="color: #0f62fe;">giveforgood.india@gmail.com</a></strong><br>
+        or WhatsApp: 
+        <strong>
+          <a href="https://wa.me/918569369270" style="color: #0f62fe; display: block; margin-top: 8px;">
+            <img src="img/whatsapp-color-icon.png" alt="WhatsApp" style="width: 20px; margin-right: 8px; vertical-align: middle;">
+            +91 8569369270
+          </a>
+        </strong>
+      </div>
+      
+      
+      
+    <br>
+    <button class="btn" onclick="goToHome()">Back to Home</button>
+
+    <div class="footer-note">This is a demo donation page while Razorpay is under verification.</div>
+  </div>
+
+  <script>
+    function goToHome() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

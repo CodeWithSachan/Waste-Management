@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DaanSetu - Donation Form</title>
+
+  <!-- SheetDB script to auto-connect form -->
+  <script src="https://sheetdb.io/s/f/jb5koeqcev1hu.js"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+      const scriptURL = "https://sheetdb.io/api/v1/ptwl304k148gq";
+      const form = document.forms["donation-form"];
+      const successMessage = document.getElementById("success-message");
+      const submitButton = document.getElementById("submit-button");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = {
+          "Full Name": form["full-name"].value,
+          "Mobile Number": form["mobile"].value,
+          "Email Address": form["email"].value,
+          "Address": form["address"].value,
+          "What Are You Donating?": form["donation"].value,
+          "Preferred Pickup Date & Time": form["pickup"].value,
+          "Additional Notes": form["notes"].value,
+        };
+
+        const imageURL = form["photo"].value; // For image link
+        const imageFile = form["photo-file"]?.files[0]; // For file upload
+
+        submitButton.disabled = true;
+
+        if (imageURL) {
+          // If there's a direct image URL, add it to formData
+          formData["Item Photo (Link)"] = imageURL;
+          submitForm(formData);
+        } else if (imageFile) {
+          // If there's a file upload, convert it to base64 and send
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            const base64Image = event.target.result;
+            formData["Item Photo (Link)"] = base64Image;
+            submitForm(formData);
+          };
+          reader.readAsDataURL(imageFile); // Convert image to base64
+        } else {
+          submitForm(formData);
+        }
+      });
+
+      function submitForm(formData) {
+        fetch(scriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: formData }),
+        })
+          .then((response) => {
+            localStorage.setItem("donationdata", JSON.stringify(formData));
+            successMessage.classList.remove("hidden");
+            form.reset();
+            successMessage.scrollIntoView({ behavior: "smooth" });
+
+            setTimeout(() => {
+              window.location.href = "store.html";
+            }, 1000);
+          })
+
+          .catch((error) => {
+            alert("Oops! Something went wrong.");
+            console.error("Error:", error);
+          })
+          .finally(() => {
+            submitButton.disabled = false;
+          });
+      }
+    });
+  </script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-5xl mx-auto p-8 bg-white shadow-lg rounded-xl mt-10">
+    <div class="text-center mb-6">
+      <img src="img/Daan-setu-img.png" alt="DaanSetu Logo" class="mx-auto w-28" />
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center justify-center">
+      <!-- Left Section: Images -->
+      <div class="lg:w-1/2 w-full p-4 space-y-4">
+        <img src="img/donation1.jpg" alt="Donation Image 1" class="w-full rounded-lg shadow-lg" />
+        <img src="img/education.jpg" alt="Donation Image 2" class="w-full rounded-lg shadow-lg" />
+        <img src="img/water.jpg" alt="Donation Image 3" class="w-full rounded-lg shadow-lg" />
+      </div>
+
+      <!-- Right Section: Donation Form -->
+      <div class="lg:w-1/2 w-full p-6">
+        <h1 class="text-3xl font-bold text-center mb-6 text-green-600">DaanSetu - Donation Form</h1>
+
+        <form name="donation-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" name="full-name" required placeholder="Enter your full name" class="mt-1 p-2 w-full border border-gray-300 rounded-lg" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Mobile Number</label>
+            <input type="tel" name="mobile" required pattern="[0-9]{10}" placeholder="Enter your 10-digit mobile number" class="mt-1 p-2 w-full border border-gray-300 rounded-lg" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Email Address</label>
+            <input type="email" name="email" required placeholder="Enter your email address" class="mt-1 p-2 w-full border border-gray-300 rounded-lg" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Address</label>
+            <textarea name="address" rows="2" required placeholder="Enter your address" class="mt-1 p-2 w-full border border-gray-300 rounded-lg"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">What Are You Donating?</label>
+            <input type="text" name="donation" required placeholder="Describe what you're donating" class="mt-1 p-2 w-full border border-gray-300 rounded-lg" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Preferred Pickup Date & Time</label>
+            <input type="datetime-local" name="pickup" required class="mt-1 p-2 w-full border border-gray-300 rounded-lg" />
+          </div>
+
+          <div class="mb-6">
+            <label for="photo-file" class="block text-sm font-medium text-gray-700 mb-1">Upload Image (Optional)</label>
+            <input 
+              type="file" 
+              id="photo-file" 
+              name="photo-file" 
+              accept="image/*" 
+              class="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none focus:ring-orange-500 focus:border-orange-500" 
+            />
+            <p class="text-xs text-gray-500 mt-1">Choose an image from your device (JPG, PNG, etc.)</p>
+          </div>
+          
+          <div class="mb-6">
+            <label for="photo" class="block text-sm font-medium text-gray-700 mb-1">Image Link (Optional)</label>
+            <input 
+              type="url" 
+              name="photo" 
+              id="photo" 
+              placeholder="Paste your image link here" 
+              class="p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-orange-500 focus:border-orange-500" 
+            />
+            <p class="text-xs text-gray-500 mt-1">
+              You can also upload your image to 
+              <a href="https://drive.google.com/drive/my-drive" target="_blank" class="text-blue-600 underline">Google Drive</a> or 
+              <a href="https://imgur.com/upload" target="_blank" class="text-blue-600 underline">Imgur</a>, set visibility to 
+              <strong>“Anyone with the link”</strong>, and paste the link above.
+            </p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Additional Notes</label>
+            <textarea name="notes" rows="3" placeholder="Enter any additional notes" class="mt-1 p-2 w-full border border-gray-300 rounded-lg"></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" id="submit-button" class="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-300">Submit Donation</button>
+          </div>
+        </form>
+
+        <div id="success-message" class="hidden text-center mt-4 text-green-600 font-semibold">
+          Thank you for your donation! We'll reach out soon.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

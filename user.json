@@ -1,0 +1,12 @@
+{
+    "users": [
+      {
+        "username": "exampleUser",
+        "password": "hashedPasswordHere",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john@example.com"
+      }
+    ]
+  }
+  

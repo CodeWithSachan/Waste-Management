@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daan-Setu | Donate Essentials</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Owl Carousel -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
+
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+    }
+
+/*** Navbar ***/
+.fixed-top {
+    transition: .5s;
+}
+
+.top-bar {
+    height: 45px;
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+.navbar .navbar-nav .nav-link {
+    margin-right: 30px;
+    padding: 25px 0;
+    color: #FFFFFF;
+    font-weight: 500;
+    outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+    .navbar .navbar-nav {
+        margin-top: 10px;
+        border-top: 1px solid rgba(0, 0, 0, .07);
+        background: var(--dark);
+    }
+
+    .navbar .navbar-nav .nav-link {
+        padding: 10px 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        top: 100%;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+        transition: .5s;
+        opacity: 0;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        transform: rotateX(0deg);
+        visibility: visible;
+        transition: .5s;
+        opacity: 1;
+    }
+}
+.fixed-top.scrolled {
+    background-color: #1a1a1a; /* Dark background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .banner .owl-carousel .item {
+      height: 500px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .banner .item::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    }
+
+    .banner .text-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .banner .text-content h2 {
+      font-size: 48px;
+      font-weight: 800;
+    }
+
+    .banner .text-content h4 {
+      font-size: 24px;
+      color: #f1c40f;
+    }
+
+    .section-heading h2 {
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .product-item {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .product-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .down-content {
+      padding: 20px;
+    }
+
+    .down-content h4 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .best-features {
+      padding: 60px 0;
+      background: white;
+    }
+
+    .filled-button {
+      background-color: #e67e22;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .filled-button:hover {
+      background-color: #d35400;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      padding: 25px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .banner .text-content h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+   <!-- Navbar Start -->
+   <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+    <div class="top-bar text-white-50 row gx-0 align-items-center d-none d-lg-flex">
+        <div class="col-lg-6 px-5 text-start">
+            <small><i class="fa fa-map-marker-alt me-2"></i>NEW DELHI, INDIA </small>
+            <small class="ms-4"><i class="fa fa-envelope me-2"></i>giveforgood.india@gmail.com</small>
+        </div>
+        <div class="col-lg-6 px-5 text-end">
+            <small>Follow us:</small>
+            <a class="text-white-50 ms-3" href="https://www.facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a class="text-white-50 ms-3" href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a class="text-white-50 ms-3" href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a class="text-white-50 ms-3" href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <a class="navbar-brand" href="#">
+            <img src="img/Setu.png" alt="Daan-Setu Logo" style="height: 100px;">
+          </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <!-- <a href="store2.html" class="nav-item nav-link">Store</a> -->
+                <!-- <a href="store.html" class="nav-item nav-link">Donated Items</a> -->
+                <a href="causes.html" class="nav-item nav-link">Causes</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="service.html" class="dropdown-item">Service</a>
+                        <a href="donate.html" class="dropdown-item">Donate</a>
+                        <a href="team.html" class="dropdown-item">Our Team</a>
+                        <a href="about.html" class="dropdown-item">About Us</a>
+                        <!-- <a href="404.html" class="dropdown-item">404 Page</a> -->
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <li class="nav-item">
+                  <a class="nav-link text-danger" href="#" id="clearStorageBtn"><i class="fa fa-trash"></i> Clear All</a>
+                </li>
+            </div>
+
+        </div>
+    </nav>
+</div>    
+<!-- Navbar End -->
+
+
+
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="owl-carousel owl-theme">
+      <div class="item" style="background-image: url('d1..jpg');">
+        <div class="text-content" data-aos="fade-up">
+          <h4>Join Hands</h4>
+          <h2>Donate Essentials to the Needy</h2>
+        </div>
+      </div>
+      <div class="item" style="background-image: url('d2..jpg');">
+        <div class="text-content" data-aos="fade-up">
+          <h4>Support Lives</h4>
+          <h2>Your Contribution Matters</h2>
+        </div>
+      </div>
+      <div class="item" style="background-image: url('f.jpg');">
+        <div class="text-content" data-aos="fade-up">
+          <h4>Act Now</h4>
+          <h2>Be Someone's Hope Today</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donated Items -->
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Donated Items</h2>
+    <div class="row" id="donationsContainer">
+      <!-- Donation cards will appear here -->
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="best-features">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6" data-aos="fade-right">
+          <h4>Connecting Hearts, Changing Lives</h4>
+          <p>Daan-Setu is a platform to donate clothes, food, books, and essentials to the underprivileged. Every item builds a bridge of hope.</p>
+          <ul>
+            <li>Easy to donate</li>
+            <li>Track your impact</li>
+            <li>Verified NGOs</li>
+            <li>Multiple causes supported</li>
+          </ul>
+          <a href="about.html" class="filled-button">Learn More</a>
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+          <img src="f.jpg" alt="Feature" class="img-fluid rounded-3" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+      <div class="container py-5">
+          <div class="row g-5">
+              <div class="col-lg-3 col-md-6">
+                  <h1 class="fw-bold text-primary mb-4">Daan-<span class="text-white">Setu</span></h1>
+                  <p>
+                      Pain and hardship come and go. Yet even in difficult times, kindness and compassion bring light. Where silence lives, empathy speaks the loudest.
+                  </p>
+                  <div class="d-flex align-items-center gap-3 mt-2">
+                      <small class="mb-0">Follow us:</small>
+                      <a class="text-white-50" href="https://www.facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                      <a class="text-white-50" href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+                      <a class="text-white-50" href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                      <a class="text-white-50" href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <h5 class="text-light mb-4">Address</h5>
+                  <p><i class="fa fa-map-marker-alt me-3"></i>NEW DELHI , INDIA</p>
+                  <p><i class="fa fa-phone-alt me-3"></i>+91 8569369270</p>
+                  <p><i class="fa fa-envelope me-3"></i>giveforgood.india@gmail.com</p>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <h5 class="text-light mb-4">Quick Links</h5>
+                  <a class="btn btn-link" href="about.html">About Us</a>
+                  <a class="btn btn-link" href="contact.html">Contact Us</a>
+                  <a class="btn btn-link" href="service.html">Our Services</a>
+                  <a class="btn btn-link" href="terms&conditions.html">Terms & Condition</a>
+                  <a class="btn btn-link" href="contact.html">Support</a>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <h5 class="text-light mb-4">Newsletter</h5>
+                  <p>In the midst of hardship, kindness finds a way to speak.</p>
+                  <div class="position-relative mx-auto" style="max-width: 400px;">
+                      <input id="newsletterEmail" class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="email" placeholder="Your email" required>
+                      <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2" onclick="subscribe()">SignUp</button>
+                  </div>
+                  <div id="confirmationMsg" class="mt-2 text-success" style="display: none;">
+                      Thank you for subscribing to our newsletter!
+                  </div>
+                  <div id="errorMsg" class="mt-2 text-danger" style="display: none;">
+                      Please enter a valid email address.
+                  </div>
+                  </div>
+              
+                  <script>
+                  function subscribe() {
+                  const emailInput = document.getElementById("newsletterEmail");
+                  const confirmationMsg = document.getElementById("confirmationMsg");
+                  const errorMsg = document.getElementById("errorMsg");
+              
+              const email = emailInput.value.trim();
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              
+              if (emailRegex.test(email)) {
+                      confirmationMsg.style.display = "block";
+                      errorMsg.style.display = "none";
+                      emailInput.value = ""; // Clear the input
+          } else {
+                      confirmationMsg.style.display = "none";
+                      errorMsg.style.display = "block";
+              }
+                  }
+              </script>
+
+          </div>
+      </div>
+      <div class="container-fluid copyright">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                      &copy; <a href="#">Daan-Setu</a>, All Right Reserved.
+                  </div>
+                  <div class="col-md-6 text-center text-md-end">
+                      Designed By <a>Team Nova Nexus</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Footer End -->
+
+  <!-- Scripts -->
+ <!-- Scripts -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+ <script>
+   document.getElementById('clearStorageBtn').addEventListener('click', function (e) {
+     e.preventDefault();
+ 
+     if (confirm("Are you sure you want to clear all stored donation data?")) {
+       localStorage.removeItem('donations');
+       location.reload(); // Refresh the page to reflect changes
+     }
+   });
+ </script>
+ 
+ <script>
+   window.addEventListener("scroll", function () {
+       const navbar = document.querySelector(".fixed-top");
+       if (window.scrollY > 50) {
+           navbar.classList.add("scrolled");
+       } else {
+           navbar.classList.remove("scrolled");
+       }
+   });
+</script>
+
+ <script>
+   AOS.init();
+   $('.owl-carousel').owlCarousel({
+     loop: true,
+     margin: 0,
+     nav: false,
+     autoplay: true,
+     autoplayTimeout: 5000,
+     items: 1
+   });
+
+   // Populate donated items
+   const donations = JSON.parse(localStorage.getItem('donations')) || [];
+   const donationsContainer = document.getElementById('donationsContainer');
+
+   donations.forEach(donation => {
+     const donationElement = document.createElement('div');
+     donationElement.classList.add('col-md-4', 'mb-4');
+     donationElement.innerHTML = `
+       <div class="product-item">
+       <img src="${donation.image}" alt="${donation.item}" />
+                <div class="down-content">
+           <h4>${donation.donation}</h4>
+           <p><strong>Donated by:</strong> ${donation.name}<br><strong>Address:</strong> ${donation.address}</p>
+         </div>
+       </div>
+     `;
+     donationsContainer.appendChild(donationElement);
+   });
+   
+ </script>
+</body>
+</html>
